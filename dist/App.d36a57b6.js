@@ -32347,7 +32347,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _pet = require("@frontendmasters/pet");
+var _pet = _interopRequireWildcard(require("@frontendmasters/pet"));
 
 var _useDropdown5 = _interopRequireDefault(require("./useDropdown"));
 
@@ -32364,7 +32364,7 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SearchParams = function SearchParams() {
-  // hook!
+  // hooks!
   var _useState = (0, _react.useState)("Seattle, WA"),
       _useState2 = _slicedToArray(_useState, 2),
       location = _useState2[0],
@@ -32381,11 +32381,24 @@ var SearchParams = function SearchParams() {
       AnimalDropdown = _useDropdown2[1];
 
   var _useDropdown3 = (0, _useDropdown5.default)("Breed", "", breeds),
-      _useDropdown4 = _slicedToArray(_useDropdown3, 2),
+      _useDropdown4 = _slicedToArray(_useDropdown3, 3),
       breed = _useDropdown4[0],
-      BreedDropdown = _useDropdown4[1];
+      BreedDropdown = _useDropdown4[1],
+      setBreed = _useDropdown4[2];
 
-  console.log(_pet.ANIMALS);
+  (0, _react.useEffect)(function () {
+    setBreeds([]);
+    setBreed("");
+
+    _pet.default.breeds(animal).then(function (_ref) {
+      var breeds = _ref.breeds;
+      var breedsStrings = breeds.map(function (_ref2) {
+        var name = _ref2.name;
+        return name;
+      });
+      setBreeds(breedsStrings);
+    }, console.error);
+  }, [animal, setBreed, setBreeds]);
   return _react.default.createElement("div", {
     className: "search-params"
   }, _react.default.createElement("form", null, _react.default.createElement("label", {
@@ -32446,7 +32459,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50953" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63812" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
