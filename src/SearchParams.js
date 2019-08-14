@@ -20,6 +20,7 @@ const SearchParams = () => {
 
     setPets(animals || []);
   }
+
   useEffect(() => {
     setBreeds([]);
     setBreed("");
@@ -33,7 +34,7 @@ const SearchParams = () => {
   return (
     <div className="search-params">
       <form
-        onSubmit={() => {
+        onSubmit={e => {
           e.preventDefault();
           requestPets();
         }}
@@ -52,6 +53,7 @@ const SearchParams = () => {
         <button>Submit</button>
       </form>
       <Results pets={pets} />
+      {console.log(pets)}
     </div>
   );
 };

@@ -32298,11 +32298,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Pet(_ref) {
   let name = _ref.name,
       animal = _ref.animal,
-      breed = _ref.breed;
-  return _react.default.createElement("div", null, _react.default.createElement("h1", null, name), _react.default.createElement("h2", null, animal), _react.default.createElement("h2", null, breed));
+      breed = _ref.breed,
+      media = _ref.media,
+      location = _ref.location,
+      id = _ref.id;
+  let hero = "http://placecorgi.com/300/300";
+
+  if (media.length) {
+    hero = media[0].small;
+  }
+
+  return _react.default.createElement("a", {
+    href: `/details/${id}`,
+    className: "pet"
+  }, _react.default.createElement("div", {
+    className: "image-container"
+  }, _react.default.createElement("img", {
+    src: hero,
+    alt: name
+  })), _react.default.createElement("div", {
+    className: "info"
+  }, _react.default.createElement("h1", null, name), _react.default.createElement("h2", null, `${animal} - ${breed} - ${location}`)));
 }
 },{"react":"../node_modules/react/index.js"}],"Results.js":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -32321,9 +32345,13 @@ const Results = (_ref) => {
     breed: pet.breeds.primary,
     media: pet.photos,
     location: `${pet.contact.address.city}, 
-          ${pet.contact.address.state}`
+              ${pet.contact.address.state}`,
+    id: pet.id
   })));
 };
+
+var _default = Results;
+exports.default = _default;
 },{"react":"../node_modules/react/index.js","./Pet":"Pet.js"}],"useDropdown.js":[function(require,module,exports) {
 "use strict";
 
@@ -32453,7 +32481,7 @@ const SearchParams = () => {
   return _react.default.createElement("div", {
     className: "search-params"
   }, _react.default.createElement("form", {
-    onSubmit: () => {
+    onSubmit: e => {
       e.preventDefault();
       requestPets();
     }
@@ -32466,7 +32494,7 @@ const SearchParams = () => {
     onChange: event => setLocation(event.target.value)
   })), _react.default.createElement(AnimalDropdown, null), _react.default.createElement(BreedDropdown, null), _react.default.createElement("button", null, "Submit")), _react.default.createElement(_Results.default, {
     pets: pets
-  }));
+  }), console.log(pets));
 };
 
 var _default = SearchParams;
@@ -32515,7 +32543,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63398" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57639" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
