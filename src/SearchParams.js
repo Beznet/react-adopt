@@ -53,7 +53,6 @@ const SearchParams = () => {
         <button>Submit</button>
       </form>
       <Results pets={pets} />
-      {console.log(pets)}
     </div>
   );
 };
