@@ -1,13 +1,15 @@
-import React from "react";
-import { render } from "react-dom";
-import Router from "@reach/router";
-import SearchParams from "./SearchParams";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { Router, Link } from "@reach/router";
 import Details from "./Details";
+import SearchParams from "./SearchParams";
 
 const App = () => {
   return (
     <div>
-      <h1>Adopt Me!</h1>
+      <header>
+        <Link to="/">Adopt Me!</Link>
+      </header>
       <Router>
         <SearchParams path="/" />
         <Details path="/details/:id" />
@@ -16,4 +18,4 @@ const App = () => {
   );
 };
 
-render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
